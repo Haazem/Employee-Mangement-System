@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -14,7 +8,7 @@ namespace login
 {
     public partial class EmployeesMangementSystem : Form
     {
-       static string sql = "Data Source = DESKTOP-NO54C7F ; Initial Catalog =logindb ;  Integrated Security=True ; User ID = '' ; password = '' ; ";
+        static string sql = "Data Source = DESKTOP-NO54C7F ; Initial Catalog =logindb ;  Integrated Security=True ; User ID = '' ; password = '' ; ";
         //Data Source=DESKTOP-NO54C7F;Initial Catalog=logindb;Integrated Security=True
         SqlConnection con = new SqlConnection(sql);
         private object txtpassword;
@@ -50,7 +44,7 @@ namespace login
         private void button3_Click(object sender, EventArgs e)
         {
             con.Open();
-            string query = "UPDATE userdb SET EmployeeName=@EmployeeName ,Phone=@Phone ,Email=@Email , Address=@Address  WHERE ID=" + dataGridView1.CurrentRow.Cells[0].Value.ToString()+"";
+            string query = "UPDATE userdb SET EmployeeName=@EmployeeName ,Phone=@Phone ,Email=@Email , Address=@Address  WHERE ID=" + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.Parameters.AddWithValue("@EmployeeName", txtusername.Text);
             cmd.Parameters.AddWithValue("@phone", txtpass.Text);
@@ -66,7 +60,7 @@ namespace login
         private void button4_Click(object sender, EventArgs e)
         {
             con.Open();
-            String query = "DELETE FROM userdb WHERE ID ="+dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
+            String query = "DELETE FROM userdb WHERE ID =" + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
             SqlCommand cmd = new SqlCommand(query, con);
             cmd.ExecuteNonQuery();
             con.Close();
@@ -78,7 +72,7 @@ namespace login
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = LoadUserTable(); 
+            dataGridView1.DataSource = LoadUserTable();
 
         }
 
@@ -109,7 +103,7 @@ namespace login
         private void txtsearch_TextChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            String query = "SELECT * FROM userdb WHERE EmployeeName LIKE '%" + txtsearch.Text+"%'";
+            String query = "SELECT * FROM userdb WHERE EmployeeName LIKE '%" + txtsearch.Text + "%'";
             con.Open();
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
